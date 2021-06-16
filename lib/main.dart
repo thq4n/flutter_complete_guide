@@ -4,8 +4,26 @@ void main(List<String> args) {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  var questionIndex = 0;
+
   void answerQuestion() {
+    setState(() {
+      questionIndex++;
+      if (questionIndex > 1) {
+        questionIndex = 0;
+      }
+    });
+
+    print(questionIndex);
     print("Answer 1");
   }
 
@@ -22,7 +40,7 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: <Widget>[
-            Text("The question!"),
+            Text(questions.elementAt(questionIndex)),
             ElevatedButton(onPressed: answerQuestion, child: Text("Answer 1")),
             ElevatedButton(
                 onPressed: () => print("Anwser 2"), child: Text("Answer 2")),
