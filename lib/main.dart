@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/question.dart';
 
 void main(List<String> args) {
   runApp(MyApp());
@@ -8,22 +9,22 @@ class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
 
-  void answerQuestion() {
+  void _answerQuestion() {
     setState(() {
-      questionIndex++;
-      if (questionIndex > 1) {
-        questionIndex = 0;
+      _questionIndex++;
+      if (_questionIndex > 1) {
+        _questionIndex = 0;
       }
     });
 
-    print(questionIndex);
+    print(_questionIndex);
     print("Answer 1");
   }
 
@@ -40,8 +41,8 @@ class MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: <Widget>[
-            Text(questions.elementAt(questionIndex)),
-            ElevatedButton(onPressed: answerQuestion, child: Text("Answer 1")),
+            Question(questions.elementAt(_questionIndex)),
+            ElevatedButton(onPressed: _answerQuestion, child: Text("Answer 1")),
             ElevatedButton(
                 onPressed: () => print("Anwser 2"), child: Text("Answer 2")),
             ElevatedButton(
