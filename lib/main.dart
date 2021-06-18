@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/answer.dart';
 import 'package:flutter_complete_guide/question.dart';
 
 void main(List<String> args) {
@@ -8,7 +9,6 @@ void main(List<String> args) {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _MyAppState();
   }
 }
@@ -42,15 +42,9 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: <Widget>[
             Question(questions.elementAt(_questionIndex)),
-            ElevatedButton(onPressed: _answerQuestion, child: Text("Answer 1")),
-            ElevatedButton(
-                onPressed: () => print("Anwser 2"), child: Text("Answer 2")),
-            ElevatedButton(
-                onPressed: () {
-                  // ...build(context)
-                  print("Answer 3");
-                },
-                child: Text("Answer 3")),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
           ],
         ),
       ),
