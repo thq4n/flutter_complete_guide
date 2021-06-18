@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/answer.dart';
 import 'package:flutter_complete_guide/question.dart';
+import 'package:flutter_complete_guide/result.dart';
+
+import 'quiz.dart';
 
 void main(List<String> args) {
   runApp(MyApp());
@@ -14,7 +17,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final questions = const [
+  final _questions = const [
     {
       "questionText": "What's your favorite color?",
       "answers": ["Black", "Red", "Screen", "White"],
@@ -37,7 +40,6 @@ class _MyAppState extends State<MyApp> {
     });
 
     print(_questionIndex);
-    print("Answer 1");
   }
 
   @override
@@ -47,26 +49,15 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text("My first app"),
         ),
-        body: _questionIndex < questions.length
-            ? Column(
-                children: <Widget>[
-                  Question(questions
-                      .elementAt(_questionIndex)['questionText']
-                      .toString()),
-                  ...(questions[_questionIndex]["answers"] as List<String>)
-                      .map((answer) {
-                    return Answer(_answerQuestion, answer);
-                  }).toList(),
-                ],
+        body: _questionIndex < _questions.length
+            ? Quiz(
+                questions: _questions,
+                answerQuestion: _answerQuestion,
+                questionIndex: _questionIndex,
               )
-            : Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    _questionIndex = -1;
-                    _answerQuestion();
-                  },
-                  child: Text("Try again!"),
-                ),
+            : Result(
+                questionIndex: _questionIndex,
+                answerQuestion: _answerQuestion,
               ),
       ),
     );
