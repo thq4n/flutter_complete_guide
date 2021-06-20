@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
       "answers": [
         {"answerText": "Black", "score": 1},
         {"answerText": "Red", "score": 2},
-        {"answerText": "Screen", "score": 3},
+        {"answerText": "Green", "score": 3},
         {"answerText": "White", "score": 4},
       ],
     },
@@ -50,11 +50,9 @@ class _MyAppState extends State<MyApp> {
 
   void _answerQuestion(int score) {
     setState(() {
-      _questionIndex++;
+      _questionIndex = _questionIndex + 1;
       _totalScore += score;
     });
-
-    print(_questionIndex);
   }
 
   void _resetQuestion() {
